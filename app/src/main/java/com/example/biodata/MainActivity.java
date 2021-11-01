@@ -10,6 +10,7 @@ import androidx.navigation.NavHost;
 import androidx.room.Room;
 
 import com.example.biodata.model.Database;
+import com.google.android.material.color.DynamicColors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,12 +22,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DynamicColors.applyIfAvailable(this);
+
         db = Room.databaseBuilder(getApplicationContext(),
                 Database.class, "database-name").allowMainThreadQueries().build();
 
         NavHost navHost = (NavHost) getSupportFragmentManager().findFragmentById(R.id.nav_host);
         navController = navHost.getNavController();
 
+        setSupportActionBar(findViewById(R.id.toolbar));
         setupActionBarWithNavController(this, navController);
     }
 
